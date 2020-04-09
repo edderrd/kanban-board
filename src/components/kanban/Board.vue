@@ -1,6 +1,6 @@
 <template>
     <div class="kanban-board-container">
-        <draggable v-model="lists" group="lists" @start="drag = true" @end="drag = false">
+        <draggable v-model="lists" group="lists">
           <transition-group>
             <List :list="list" v-for="list in lists" :key="list.id" @added="addCard" />
           </transition-group>

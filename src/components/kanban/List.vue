@@ -19,7 +19,11 @@
       </v-card-title>
       
       <v-card-text class="kanban-board-list-cards">
-        <Card v-for="card in list.cards" :key="card.id" :card="card" />
+          <draggable v-model="list.cards" group="cards" @start="drag = true" @end="drag = false">
+            <transition-group>
+              <Card v-for="card in list.cards" :key="card.id" :card="card" />
+            </transition-group>
+          </draggable>
         <br class="kanban-card-end">
       </v-card-text>
 
@@ -31,12 +35,13 @@
 </template>
 
 <script>
- import Vue from 'vue';
+import Vue from 'vue';
+import draggable from 'vuedraggable'
 import Card from './Card.vue';
 import AddCard from './list/AddCard.vue';
 
 export default {
-  components: { Card, AddCard },
+  components: { draggable, Card, AddCard },
 
   props: {
     list: { required: true, type: Object, default: () => ({})}
@@ -73,7 +78,7 @@ export default {
     flex-wrap: nowrap;
   }
 
-  .kanban-board-list-cards {
+  .kanban-board-list-cards > div > span {
     display: grid;
     grid-gap: 10px;
   }

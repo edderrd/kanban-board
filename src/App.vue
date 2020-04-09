@@ -18,7 +18,7 @@
 
     <v-content>
       <v-container fluid fill-height class="pa-0 grey lighten-4">
-        <Board :lists="lists" />
+        <Board :lists="lists" @added="addList" />
       </v-container>
     </v-content>
   </v-app>
@@ -44,12 +44,18 @@ export default {
       {id: 2, name: 'To Do', order: 2, cards: []},
       {id: 3, name: 'Doing', order: 3, cards: []},
       {id: 4, name: 'Done', order: 3, cards: []},
-      {id: 5, name: 'List 5', order: 5, cards: []},
-      {id: 6, name: 'List 6', order: 6, cards: []},
-      {id: 7, name: 'List 7', order: 7, cards: []},
-      {id: 8, name: 'List 8', order: 8, cards: []},
-      {id: 9, name: 'List 9', order: 9, cards: []},
     ]
   }),
+
+  methods: {
+    addList(name) {
+      this.lists.push({
+        id: this.lists.length + 1,
+        name,
+        cards: [],
+        order: this.lists.length + 1,
+      })
+    }
+  }
 };
 </script>

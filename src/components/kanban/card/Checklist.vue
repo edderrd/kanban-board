@@ -1,14 +1,18 @@
 <template>
   <v-list dense>
     <v-subheader class="ml-3">CHECKLISTS</v-subheader>
-    <v-list-item :key="index" v-for="(item, index) in card.checkItems">
-      <v-list-item-action>
-        <v-checkbox v-model="item.checked" />
-      </v-list-item-action>
-      <v-list-item-content>
-        <v-list-item-title>{{ item.content }}</v-list-item-title>
-      </v-list-item-content>
-    </v-list-item>
+    <draggable v-model="card.checkItems" group="checkItems">
+      <transition-group>
+        <v-list-item :key="index" v-for="(item, index) in card.checkItems">
+          <v-list-item-action>
+            <v-checkbox v-model="item.checked" />
+          </v-list-item-action>
+          <v-list-item-content>
+            <v-list-item-title>{{ item.content }}</v-list-item-title>
+          </v-list-item-content>
+        </v-list-item>
+      </transition-group>
+    </draggable>
     <v-list-item class="kanban-card-check-item-add">
       <v-list-item-content>
         <span v-if="!adding">
@@ -38,10 +42,14 @@
 
 <script>
 import Vue from 'vue';
+import draggable from 'vuedraggable';
+
 export default {
   props: {
     card: { required: true, type: Object }
   },
+
+  components: { draggable },
   
   data: () => ({
     content: null,

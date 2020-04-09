@@ -19,14 +19,10 @@ export default {
 <style>
   .kanban-board-container {
     display: flex;
-    border: 1px solid red;
     height: 100%;
     overflow-x: auto;
     flex-wrap: nowrap;
-  }
-
-  .kanban-board-container > div {
-    margin-right: 15px;
+    padding: 0 5px;
   }
 
 </style>

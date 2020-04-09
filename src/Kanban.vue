@@ -1,6 +1,6 @@
 <template>
   <v-container fluid class="pa-0" fill-height>
-  <Board :lists="lists" @listAdded="addList" @cardAdded="addCard" @addCheckItem="addCheckItem" />  
+    <Board :lists="lists" @listAdded="addList" @cardAdded="addCard" @addCheckItem="addCheckItem" />  
   </v-container>
 </template>
 

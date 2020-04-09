@@ -1,6 +1,6 @@
 <template>
   <div class="kanban-board-list v-dialog--scrollable">
-    <v-card color="grey lighten-2 elevation-1">
+    <v-card flat color="list">
       <v-card-title class="subtitle-2">
         <span class="subtitle-2">{{ list.name }}</span>
         <v-spacer></v-spacer>

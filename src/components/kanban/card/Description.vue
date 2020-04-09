@@ -1,5 +1,5 @@
 <template>
-  <v-list dense>
+  <v-list dense class="transparent">
     <v-subheader class="ml-2">
       DESCRIPTION
     </v-subheader>

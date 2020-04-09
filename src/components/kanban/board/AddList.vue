@@ -4,7 +4,6 @@
       id="testing1"
       @click="adding = true"
       text
-      class="grey lighten-3"
       v-if="!adding"
     >
       Add list...

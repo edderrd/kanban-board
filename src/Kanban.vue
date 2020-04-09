@@ -1,5 +1,7 @@
 <template>
-  <Board class="grey lighten-4" :lists="lists" @listAdded="addList" @cardAdded="addCard" @addCheckItem="addCheckItem" />  
+  <v-container fluid class="pa-0" fill-height>
+  <Board :lists="lists" @listAdded="addList" @cardAdded="addCard" @addCheckItem="addCheckItem" />  
+  </v-container>
 </template>
 
 <script>
@@ -41,6 +43,7 @@ export default {
         id: list.cards.length + 1,
         name: card.name,
         order: list.cards.length + 1,
+        checkItems: [],
       })
     },
 

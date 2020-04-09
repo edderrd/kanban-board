@@ -1,5 +1,5 @@
 <template>
-  <v-list dense>
+  <v-list dense class="transparent">
     <v-subheader class="ml-3">CHECKLISTS</v-subheader>
     <draggable v-model="card.checkItems" group="checkItems">
       <transition-group>

@@ -1,16 +1,23 @@
 <template>
-  <div class="kanban-board-container">
-    <List :list="list" v-for="list in lists" :key="list.id" @added="addCard" />
-    <AddList @added="listAdded" />
-  </div>
+    <div class="kanban-board-container">
+        <draggable v-model="lists" group="lists" @start="drag = true" @end="drag = false">
+          <transition-group>
+            <List :list="list" v-for="list in lists" :key="list.id" @added="addCard" />
+          </transition-group>
+        </draggable>
+      <div>
+        <AddList @added="listAdded" />
+      </div>
+    </div>
 </template>
 
 <script>
+import draggable from 'vuedraggable'
 import List from './List.vue'
 import AddList from './board/AddList.vue';
 
 export default {
-  components: { List, AddList },
+  components: { draggable, List, AddList },
 
   props: {
     lists: { required: true, type: Array, default: () => ([]) }
@@ -33,10 +40,10 @@ export default {
     display: flex;
     height: 100%;
     overflow-x: auto;
-    overflow-y: hidden;
-    flex-wrap: nowrap;
+  }
+  .kanban-board-container > div > span {
+    display: flex;
     padding: 0 5px;
-    max-height: inherit;
   }
 
 </style>

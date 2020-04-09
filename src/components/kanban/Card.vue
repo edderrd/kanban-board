@@ -1,5 +1,5 @@
 <template>
-  <v-card hover max-width="250px">
+  <v-card hover max-width="250px" @click="$emit('selected', card)">
     <v-img v-if="card.cover" :src="card.cover" height="200px"></v-img>
     <v-card-text>
       <Labels :card="card" />

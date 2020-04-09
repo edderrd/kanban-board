@@ -21,7 +21,7 @@
       <v-card-text class="kanban-board-list-cards">
           <draggable v-model="list.cards" group="cards" @start="drag = true" @end="drag = false">
             <transition-group>
-              <Card v-for="card in list.cards" :key="card.id" :card="card" />
+              <Card v-for="card in list.cards" :key="card.id" :card="card" @selected="selectCard" />
             </transition-group>
           </draggable>
         <br class="kanban-card-end">
@@ -56,8 +56,11 @@ export default {
           .getElementsByClassName("kanban-card-end")[0]
           .scrollIntoView({ block: 'end',  behavior: 'smooth' });
       })
+    },
+    selectCard(card) {
+      this.$emit('cardSelected', {...card, list: this.list})
     }
-  }
+  },
 }
 </script>
 

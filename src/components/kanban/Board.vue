@@ -2,12 +2,13 @@
     <div class="kanban-board-container">
         <draggable v-model="lists" group="lists">
           <transition-group>
-            <List :list="list" v-for="list in lists" :key="list.id" @added="addCard" />
+            <List :list="list" v-for="list in lists" :key="list.id" @added="addCard" @cardSelected="showCard" />
           </transition-group>
         </draggable>
       <div>
         <AddList @added="listAdded" />
       </div>
+      <CardDialog @addCheckItem="addCheckItem" ref="cardDialog" />
     </div>
 </template>
 
@@ -15,9 +16,10 @@
 import draggable from 'vuedraggable'
 import List from './List.vue'
 import AddList from './board/AddList.vue';
+import CardDialog from './card/Dialog.vue';
 
 export default {
-  components: { draggable, List, AddList },
+  components: { draggable, List, AddList, CardDialog },
 
   props: {
     lists: { required: true, type: Array, default: () => ([]) }
@@ -30,6 +32,14 @@ export default {
 
     addCard(card) {
       this.$emit('cardAdded', card)
+    },
+    
+    showCard(card) {
+      this.$refs.cardDialog.show(card)
+    },
+
+    addCheckItem(item) {
+      this.$emit('addCheckItem', item);
     }
   }
 }

@@ -33,8 +33,10 @@ export default {
     display: flex;
     height: 100%;
     overflow-x: auto;
+    overflow-y: hidden;
     flex-wrap: nowrap;
     padding: 0 5px;
+    max-height: inherit;
   }
 
 </style>

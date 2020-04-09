@@ -1,5 +1,5 @@
 <template>
-  <div class="kanban-board-list">
+  <div class="kanban-board-list v-dialog--scrollable">
     <v-card color="grey lighten-2 elevation-1">
       <v-card-title class="subtitle-2">
         <span class="subtitle-2">{{ list.name }}</span>
@@ -20,9 +20,10 @@
       
       <v-card-text class="kanban-board-list-cards">
         <Card v-for="card in list.cards" :key="card.id" :card="card" />
+        <br class="kanban-card-end">
       </v-card-text>
 
-      <v-card-actions>
+      <v-card-actions class="mt-0 pt-0">
         <AddCard @added="addCard" />
       </v-card-actions>
     </v-card>
@@ -30,6 +31,7 @@
 </template>
 
 <script>
+ import Vue from 'vue';
 import Card from './Card.vue';
 import AddCard from './list/AddCard.vue';
 
@@ -43,6 +45,12 @@ export default {
   methods: {
     addCard(name) {
       this.$emit('added', { list: this.list, name })
+      
+      Vue.nextTick(() => {
+        this.$el
+          .getElementsByClassName("kanban-card-end")[0]
+          .scrollIntoView({ block: 'end',  behavior: 'smooth' });
+      })
     }
   }
 }
@@ -55,6 +63,14 @@ export default {
     display: grid;
     padding: 15px 8px;
     align-items: flex-start;
+    max-height: 92vh;
+
+  }
+
+  .kanban-board-list .v-card {
+    overflow: hidden;
+    max-height: inherit;
+    flex-wrap: nowrap;
   }
 
   .kanban-board-list-cards {

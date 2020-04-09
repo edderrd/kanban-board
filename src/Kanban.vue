@@ -1,7 +1,5 @@
 <template>
-  <v-container fluid fill-height class="pa-0 grey lighten-4">
-    <Board :lists="lists" @listAdded="addList" @cardAdded="addCard" />  
-  </v-container>
+  <Board class="grey lighten-4" :lists="lists" @listAdded="addList" @cardAdded="addCard" />  
 </template>
 
 <script>

@@ -18,7 +18,7 @@
 
     <v-content>
       <v-container fluid fill-height class="pa-0 grey lighten-4">
-        <Board :lists="lists" @added="addList" />
+        <Board :lists="lists" @listAdded="addList" @cardAdded="addCard" />
       </v-container>
     </v-content>
   </v-app>
@@ -54,6 +54,17 @@ export default {
         name,
         cards: [],
         order: this.lists.length + 1,
+      })
+    },
+
+    addCard(card) {
+      const list = this.lists.find(i => card.list.id === i.id)
+      if (!list) return;
+
+      list.cards.push({
+        id: list.cards.length + 1,
+        name: card.name,
+        order: list.cards.length + 1,
       })
     }
   }

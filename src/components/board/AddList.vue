@@ -17,7 +17,7 @@
           @keydown.esc="adding = false"
           autofocus
           outlined
-          label="Enter list title"
+          label="Enter list name..."
         />
       </v-card-text>
       <v-card-actions>
@@ -46,7 +46,6 @@ export default {
 
       Vue.nextTick(() => {
         this.$el.scrollIntoView({ block: 'end',  behavior: 'smooth' });
-        console.log(this.$el)
       })
     }
   }

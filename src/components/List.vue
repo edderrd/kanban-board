@@ -23,7 +23,7 @@
       </v-card-text>
 
       <v-card-actions>
-        <v-btn text small>Add card...</v-btn>
+        <AddCard @added="addCard" />
       </v-card-actions>
     </v-card>
   </div>
@@ -31,12 +31,19 @@
 
 <script>
 import Card from './Card.vue';
+import AddCard from './list/AddCard.vue';
 
 export default {
-  components: { Card },
+  components: { Card, AddCard },
 
   props: {
-    list: { rqeuired: true, type: Object, default: () => ({})}
+    list: { required: true, type: Object, default: () => ({})}
+  },
+
+  methods: {
+    addCard(name) {
+      this.$emit('added', { list: this.list, name })
+    }
   }
 }
 </script>

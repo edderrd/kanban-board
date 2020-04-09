@@ -1,6 +1,6 @@
 <template>
   <div class="kanban-board-container">
-    <List :list="list" v-for="list in lists" :key="list.id" />
+    <List :list="list" v-for="list in lists" :key="list.id" @added="addCard" />
     <AddList @added="listAdded" />
   </div>
 </template>
@@ -18,7 +18,11 @@ export default {
 
   methods: {
     listAdded(name) {
-      this.$emit('added', name);
+      this.$emit('listAdded', name);
+    },
+
+    addCard(card) {
+      this.$emit('cardAdded', card)
     }
   }
 }
